@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db-and-tasks:
+    image: postgres:latest
+    container_name: my_postgres_container
+    environment:
+      POSTGRES_USER: maks
+      POSTGRES_PASSWORD: my_pass
+      POSTGRES_DB: clothing_store
+    ports:
+      - "5435:5432"
+    volumes:
+      - /psql_data
+
+  adminer:
+    image: adminer
+    container_name: my_adminer_container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db-and-tasks
+
+
